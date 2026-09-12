@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Routes Untold — thoughtfully planned trips, custom itineraries and travel guidance." />
+  <title>Routes Untold | Travel Beyond the Usual</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#f5f1e9;
+      --paper:#fffdf8;
+      --ink:#17352e;
+      --muted:#68736d;
+      --accent:#d86f45;
+      --accent-dark:#b95431;
+      --green:#244c42;
+      --line:rgba(23,53,46,.13);
+      --shadow:0 22px 65px rgba(27,45,39,.12);
+      --radius:26px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"DM Sans",sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      overflow-x:hidden;
+    }
+
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    button,input,textarea,select{font:inherit}
+    .container{width:min(1180px,calc(100% - 40px));margin:auto}
+
+    .nav{
+      position:fixed;z-index:1000;top:18px;left:50%;transform:translateX(-50%);
+      width:min(1180px,calc(100% - 28px));
+      display:flex;align-items:center;justify-content:space-between;
+      padding:12px 16px 12px 20px;
+      border:1px solid rgba(255,255,255,.5);
+      background:rgba(255,253,248,.84);
+      backdrop-filter:blur(18px);
+      border-radius:999px;
+      box-shadow:0 12px 38px rgba(23,53,46,.1);
+    }
+
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.02em}
+    .brand-mark{
+      width:40px;height:40px;border-radius:50%;display:grid;place-items:center;
+      background:var(--green);color:white;font-family:"Playfair Display",serif;font-size:18px;
+    }
+    .nav-links{display:flex;align-items:center;gap:28px;font-size:14px}
+    .nav-links a{color:#34544b;transition:.2s}
+    .nav-links a:hover{color:var(--accent)}
+    .nav-cta,.btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:13px 20px;border-radius:999px;border:0;cursor:pointer;
+      background:var(--accent);color:#fff;font-weight:700;
+      transition:transform .2s ease,background .2s ease,box-shadow .2s ease;
+    }
+    .btn:hover,.nav-cta:hover{transform:translateY(-2px);background:var(--accent-dark);box-shadow:0 10px 25px rgba(216,111,69,.25)}
+    .btn.secondary{background:transparent;color:var(--ink);border:1px solid var(--line);box-shadow:none}
+    .btn.secondary:hover{background:#fff}
+
+    .hero{
+      min-height:100vh;display:flex;align-items:flex-end;
+      padding:125px 0 52px;position:relative;
+    }
+    .hero-card{
+      min-height:720px;border-radius:38px;overflow:hidden;position:relative;
+      display:flex;align-items:flex-end;box-shadow:var(--shadow);
+      background:
+        linear-gradient(90deg,rgba(10,34,28,.78) 0%,rgba(10,34,28,.48) 44%,rgba(10,34,28,.1) 75%),
+        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=88") center/cover;
+    }
+
+    .hero-card:after{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(0,0,0,.03),rgba(0,0,0,.15));
+      pointer-events:none;
+    }
+    .hero-content{
+      position:relative;z-index:2;color:white;padding:70px;max-width:800px;
+      animation:fadeUp .9s ease both;
+    }
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:9px;
+      text-transform:uppercase;font-size:12px;letter-spacing:.16em;font-weight:700;
+      margin-bottom:20px;
+    }
+    .eyebrow:before{content:"";width:35px;height:1px;background:currentColor}
+    h1,h2,h3{font-family:"Playfair Display",serif;margin:0}
+    h1{font-size:clamp(56px,7.5vw,110px);line-height:.91;letter-spacing:-.055em}
+    .hero p{font-size:18px;line-height:1.65;max-width:610px;color:rgba(255,255,255,.87);margin:24px 0 30px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .hero .secondary{color:white;border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.08)}
+    .hero .secondary:hover{background:rgba(255,255,255,.16)}
+    .floating-note{
+      position:absolute;z-index:3;right:34px;bottom:34px;
+      background:rgba(255,253,248,.9);color:var(--ink);
+      backdrop-filter:blur(12px);padding:18px 20px;border-radius:18px;
+      width:240px;font-size:13px;line-height:1.5;
+    }
+    .floating-note strong{display:block;font-size:17px;margin-bottom:5px}
+
+    section{padding:105px 0}
+    .section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:48px}
+    .section-head h2{font-size:clamp(40px,5vw,68px);line-height:1;letter-spacing:-.035em;max-width:670px}
+    .section-head p{max-width:440px;color:var(--muted);line-height:1.7;margin:0}
+
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+    .stat{
+      background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:28px;
+      transition:.25s ease;
+    }
+    .stat:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(20,42,35,.08)}
+    .stat strong{display:block;font-family:"Playfair Display",serif;font-size:42px}
+    .stat span{color:var(--muted);font-size:14px}
+
+    .services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .service{
+      min-height:390px;background:var(--paper);border:1px solid var(--line);
+      border-radius:var(--radius);padding:34px;position:relative;overflow:hidden;
+      transition:.3s ease;
+    }
+    .service:hover{transform:translateY(-7px);box-shadow:var(--shadow)}
+    .service-number{font-size:12px;letter-spacing:.14em;color:var(--accent);font-weight:700}
+    .service h3{font-size:32px;margin:22px 0 13px}
+    .service p{line-height:1.7;color:var(--muted)}
+    .service-icon{
+      position:absolute;right:-20px;bottom:-26px;width:160px;height:160px;border-radius:50%;
+      background:rgba(216,111,69,.08);display:grid;place-items:center;
+      font-size:55px;transform:rotate(-8deg);
+    }
+
+    .gallery-wrap{overflow:hidden}
+    .gallery-track{display:flex;gap:18px;transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+    .gallery-card{
+      min-width:calc((100% - 36px)/3);height:470px;border-radius:26px;overflow:hidden;position:relative;
+      background:#ddd;
+    }
+    .gallery-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+    .gallery-card:hover img{transform:scale(1.055)}
+    .gallery-label{
+      position:absolute;left:20px;right:20px;bottom:20px;
+      color:white;padding:18px;border-radius:18px;
+      background:linear-gradient(180deg,rgba(16,38,32,.08),rgba(16,38,32,.72));
+      backdrop-filter:blur(3px);
+    }
+    .gallery-label strong{font-size:20px}
+    .gallery-label span{font-size:13px;opacity:.8;display:block;margin-top:4px}
+    .slider-controls{display:flex;gap:10px;margin-top:24px}
+    .round-btn{
+      width:48px;height:48px;border-radius:50%;border:1px solid var(--line);
+      background:var(--paper);cursor:pointer;font-size:20px;color:var(--ink);
+    }
+
+    .feature{
+      display:grid;grid-template-columns:1.06fr .94fr;gap:26px;align-items:stretch;
+    }
+    .feature-image{
+      min-height:580px;border-radius:30px;
+      background:url("https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1200&q=85") center/cover;
+    }
+    .feature-copy{
+      background:var(--green);color:white;border-radius:30px;padding:58px;
+      display:flex;flex-direction:column;justify-content:center;
+    }
+    .feature-copy h2{font-size:clamp(42px,5vw,65px);line-height:1}
+    .feature-copy p{line-height:1.8;color:rgba(255,255,255,.72);margin:25px 0}
+    .ticks{display:grid;gap:15px;margin:6px 0 30px}
+    .tick{display:flex;gap:12px;align-items:flex-start}
+    .tick i{font-style:normal;color:#ffd9ca}
+
+    .contact{
+      display:grid;grid-template-columns:.95fr 1.05fr;gap:30px;align-items:start;
+    }
+    .contact-copy{padding:32px 10px 0}
+    .contact-copy h2{font-size:clamp(44px,5.4vw,72px);line-height:.98}
+    .contact-copy p{color:var(--muted);line-height:1.8;max-width:500px;margin:20px 0}
+    .contact-card{
+      background:var(--paper);border:1px solid var(--line);border-radius:30px;
+      padding:34px;box-shadow:var(--shadow);
+    }
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+    .field{display:grid;gap:8px}
+    .field.full{grid-column:1/-1}
+    label{font-size:13px;font-weight:700}
+    input,textarea,select{
+      width:100%;border:1px solid var(--line);background:#faf8f2;
+      padding:15px 16px;border-radius:14px;color:var(--ink);outline:none;
+      transition:.2s;
+    }
+    input:focus,textarea:focus,select:focus{border-color:rgba(216,111,69,.8);box-shadow:0 0 0 4px rgba(216,111,69,.08)}
+    textarea{min-height:120px;resize:vertical}
+    .submit{width:100%;margin-top:16px}
+    #formStatus{font-size:13px;margin-top:13px;min-height:18px}
+
+    footer{padding:28px 0 45px}
+    .footer-inner{
+      border-top:1px solid var(--line);padding-top:28px;
+      display:flex;justify-content:space-between;gap:20px;align-items:center;
+      color:var(--muted);font-size:14px;
+    }
+
+    .reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.show{opacity:1;transform:none}
+
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(25px)}
+      to{opacity:1;transform:none}
+    }
+
+    @media(max-width:900px){
+      .nav-links{display:none}
+      .hero-card{min-height:690px}
+      .hero-content{padding:42px}
+      .floating-note{display:none}
+      .stats{grid-template-columns:1fr 1fr}
+      .services{grid-template-columns:1fr}
+      .gallery-card{min-width:calc((100% - 18px)/2)}
+      .feature,.contact{grid-template-columns:1fr}
+      .feature-image{min-height:460px}
+    }
+
+    @media(max-width:600px){
+      .container{width:min(100% - 24px,1180px)}
+      .nav{top:10px}
+      .brand span{display:none}
+      .nav-cta{padding:11px 15px;font-size:13px}
+      .hero{padding-top:90px}
+      .hero-card{min-height:680px;border-radius:26px}
+      .hero-content{padding:28px}
+      h1{font-size:55px}
+      .hero p{font-size:16px}
+      section{padding:76px 0}
+      .section-head{display:block}
+      .section-head p{margin-top:18px}
+      .stats{grid-template-columns:1fr 1fr}
+      .stat{padding:22px}
+      .stat strong{font-size:32px}
+      .gallery-card{min-width:88%;height:430px}
+      .feature-copy{padding:34px}
+      .feature-image{min-height:390px}
+      .contact-card{padding:22px}
+      .form-grid{grid-template-columns:1fr}
+      .field.full{grid-column:auto}
+      .footer-inner{align-items:flex-start;flex-direction:column}
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav">
+    <a class="brand" href="#home" aria-label="Routes Untold home">
+      <div class="brand-mark">RU</div>
+      <span>Routes Untold</span>
+    </a>
+    <div class="nav-links">
+      <a href="#services">What we do</a>
+      <a href="#gallery">Explore</a>
+      <a href="#why-us">Why us</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">Plan my trip</a>
+  </nav>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-card">
+          <div class="hero-content">
+            <div class="eyebrow">Travel beyond the usual</div>
+            <h1>Go where the story begins.</h1>
+            <p>
+              Routes Untold creates thoughtful, personalised trips for people who want more than a standard package —
+              from hidden stays and local experiences to smooth planning from day one.
+            </p>
+            <div class="hero-actions">
+              <a href="#contact" class="btn">Start planning →</a>
+              <a href="#gallery" class="btn secondary">See destinations</a>
+            </div>
+          </div>
+          <div class="floating-note">
+            <strong>Built around you.</strong>
+            No copy-paste itinerary. We plan around your budget, pace, interests and travel style.
+          </div>
+        </div>
+
+        <div class="stats reveal">
+          <div class="stat"><strong>100%</strong><span>Custom trip planning</span></div>
+          <div class="stat"><strong>1:1</strong><span>Personal guidance</span></div>
+          <div class="stat"><strong>24/7</strong><span>Trip support options</span></div>
+          <div class="stat"><strong>∞</strong><span>Stories waiting</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">What we do</div>
+            <h2>Travel planning without the noise.</h2>
+          </div>
+          <p>From a weekend escape to an international holiday, we simplify the details so your trip feels exciting — not exhausting.</p>
+        </div>
+
+        <div class="services">
+          <article class="service reveal">
+            <div class="service-number">01 / PLAN</div>
+            <h3>Custom Itineraries</h3>
+            <p>Day-by-day plans built around your preferred pace, places, budget and experiences — with room to actually enjoy the trip.</p>
+            <div class="service-icon">🗺️</div>
+          </article>
+
+          <article class="service reveal">
+            <div class="service-number">02 / BOOK</div>
+            <h3>Travel Assistance</h3>
+            <p>Help with stays, transport, routes and trip logistics so you spend less time comparing tabs and more time looking forward to leaving.</p>
+            <div class="service-icon">✈️</div>
+          </article>
+
+          <article class="service reveal">
+            <div class="service-number">03 / GO</div>
+            <h3>On-Trip Guidance</h3>
+            <p>Need a quick route change, local suggestion or help during the trip? We stay available when your plans need a little flexibility.</p>
+            <div class="service-icon">🧭</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Explore more</div>
+            <h2>Places worth getting lost in.</h2>
+          </div>
+          <p>A glimpse of the kind of journeys Routes Untold is built for — mountains, coastlines, culture, cafés and everything in between.</p>
+        </div>
+
+        <div class="gallery-wrap reveal">
+          <div class="gallery-track" id="galleryTrack">
+            <div class="gallery-card">
+              <img src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=900&q=85" alt="Mountain road">
+              <div class="gallery-label"><strong>Himachal</strong><span>Roads, cafés & mountain mornings</span></div>
+            </div>
+            <div class="gallery-card">
+              <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=900&q=85" alt="Thailand temple">
+              <div class="gallery-label"><strong>Thailand</strong><span>City energy, islands & culture</span></div>
+            </div>
+            <div class="gallery-card">
+              <img src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=900&q=85" alt="Vietnam scenery">
+              <div class="gallery-label"><strong>Vietnam</strong><span>Food, old towns & scenic routes</span></div>
+            </div>
+            <div class="gallery-card">
+              <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=85" alt="Beach">
+              <div class="gallery-label"><strong>Island Escapes</strong><span>Slow days by the sea</span></div>
+            </div>
+            <div class="gallery-card">
+              <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=85" alt="Lake in mountains">
+              <div class="gallery-label"><strong>Hidden India</strong><span>Quieter routes, better stories</span></div>
+            </div>
+          </div>
+          <div class="slider-controls">
+            <button class="round-btn" id="prevBtn" aria-label="Previous gallery item">←</button>
+            <button class="round-btn" id="nextBtn" aria-label="Next gallery item">→</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-us">
+      <div class="container">
+        <div class="feature reveal">
+          <div class="feature-image" role="img" aria-label="Travel through nature"></div>
+          <div class="feature-copy">
+            <div class="eyebrow">Why Routes Untold</div>
+            <h2>Less package. More personality.</h2>
+            <p>
+              The best trips do not feel like a checklist. We focus on the details that make travel feel personal —
+              where you stay, how you move, what you skip, and what you discover unexpectedly.
+            </p>
+            <div class="ticks">
+              <div class="tick"><i>✓</i><span>Plans designed around your real budget</span></div>
+              <div class="tick"><i>✓</i><span>Practical routes with realistic travel time</span></div>
+              <div class="tick"><i>✓</i><span>Recommendations beyond obvious tourist spots</span></div>
+              <div class="tick"><i>✓</i><span>Support before and during your journey</span></div>
+            </div>
+            <a href="#contact" class="btn" style="align-self:flex-start">Tell us your plan →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact">
+        <div class="contact-copy reveal">
+          <div class="eyebrow">Start your journey</div>
+          <h2>You bring the idea. We’ll map the route.</h2>
+          <p>
+            Share a few details below. We’ll use them to understand where you want to go, how you like to travel,
+            and what kind of trip would make sense for you.
+          </p>
+          <p><strong>Routes Untold</strong><br>Personalised travel planning & guidance.</p>
+        </div>
+
+        <form class="contact-card reveal" id="travelForm">
+          <div class="form-grid">
+            <div class="field">
+              <label for="name">Your name</label>
+              <input id="name" name="name" type="text" placeholder="Bishal" required>
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" placeholder="+91 98xxxxxx" required>
+            </div>
+            <div class="field">
+              <label for="destination">Destination</label>
+              <input id="destination" name="destination" type="text" placeholder="Thailand / Himachal / Not sure">
+            </div>
+            <div class="field">
+              <label for="date">Tentative date</label>
+              <input id="date" name="travel_date" type="date">
+            </div>
+            <div class="field">
+              <label for="travellers">Travellers</label>
+              <select id="travellers" name="travellers">
+                <option value="1">1 traveller</option>
+                <option value="2" selected>2 travellers</option>
+                <option value="3-5">3–5 travellers</option>
+                <option value="6+">6+ travellers</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="budget">Approx. budget</label>
+              <select id="budget" name="budget">
+                <option value="not-sure">Not sure yet</option>
+                <option value="under-25k">Under ₹25,000</option>
+                <option value="25k-50k">₹25,000–₹50,000</option>
+                <option value="50k-1l">₹50,000–₹1,00,000</option>
+                <option value="1l+">₹1,00,000+</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="message">Tell us what you have in mind</label>
+              <textarea id="message" name="message" placeholder="Trip length, travel style, places you want to visit, anything else..."></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="btn submit">Send trip request →</button>
+          <div id="formStatus"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Routes Untold. All rights reserved.</div>
+      <div>Travel further. Come back with a story.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Reveal animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("show");
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+    // Gallery slider
+    const track = document.getElementById("galleryTrack");
+    const cards = [...track.children];
+    let current = 0;
+
+    function visibleCards(){
+      if (window.innerWidth <= 600) return 1;
+      if (window.innerWidth <= 900) return 2;
+      return 3;
+    }
+
+    function updateGallery(){
+      const gap = 18;
+      const cardWidth = cards[0].getBoundingClientRect().width;
+      const maxIndex = Math.max(0, cards.length - visibleCards());
+      current = Math.min(current, maxIndex);
+      track.style.transform = `translateX(-${current * (cardWidth + gap)}px)`;
+    }
+
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      const maxIndex = Math.max(0, cards.length - visibleCards());
+      current = current >= maxIndex ? 0 : current + 1;
+      updateGallery();
+    });
+
+    document.getElementById("prevBtn").addEventListener("click", () => {
+      const maxIndex = Math.max(0, cards.length - visibleCards());
+      current = current <= 0 ? maxIndex : current - 1;
+      updateGallery();
+    });
+
+    window.addEventListener("resize", updateGallery);
+
+    // Form
+    // IMPORTANT:
+    // This demo keeps the form frontend-only.
+    // To connect it to Supabase, replace the submit handler below with your Supabase insert request.
+    document.getElementById("travelForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const status = document.getElementById("formStatus");
+      const submitBtn = e.currentTarget.querySelector('button[type="submit"]');
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending...";
+      status.textContent = "";
+
+      try {
+        const formData = Object.fromEntries(new FormData(e.currentTarget).entries());
+        console.log("Trip request:", formData);
+
+        await new Promise(resolve => setTimeout(resolve, 650));
+
+        status.style.color = "#245d4c";
+        status.textContent = "Thanks! Your trip request has been captured.";
+        e.currentTarget.reset();
+      } catch (error) {
+        console.error(error);
+        status.style.color = "#b4472d";
+        status.textContent = "Something went wrong. Please try again.";
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Send trip request →";
+      }
+    });
+  </script>
+</body>
+</html>
