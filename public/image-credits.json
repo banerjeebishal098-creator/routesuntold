@@ -1,0 +1,162 @@
+[
+  {
+    "filename": "hero.webp",
+    "path": "/workspace/scratch/routes-untold-assets/hero.webp",
+    "source": "https://unsplash.com/photos/sun-shines-over-a-valley-with-mountains-at-sunrise-v1ZWFtLbMK4",
+    "photographer": "Sushanta Rokka",
+    "alt": "Himalayan river valley at sunrise",
+    "direct_url": "https://images.unsplash.com/photo-1763809677441-e343e132af60?auto=format&fit=crop&w=2400&q=85",
+    "dimensions": [
+      2400,
+      1600
+    ],
+    "bytes": 575874,
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "note": "Commercial use allowed; attribution appreciated. Specific original page not resolved for Bali, Himachal, balloons; sources and Unsplash CDN verified."
+  },
+  {
+    "filename": "thailand.webp",
+    "path": "/workspace/scratch/routes-untold-assets/thailand.webp",
+    "source": "https://unsplash.com/photos/longtail-boats-anchored-near-a-tropical-island-e0VwHiWGV9o",
+    "photographer": "Fabio & Muri",
+    "alt": "Longtail boats and a limestone island in Thailand",
+    "direct_url": "https://images.unsplash.com/photo-1766430238270-a0dca4e2ad0d?auto=format&fit=crop&w=1200&q=85",
+    "dimensions": [
+      1200,
+      800
+    ],
+    "bytes": 94928,
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "note": "Commercial use allowed; attribution appreciated. Specific original page not resolved for Bali, Himachal, balloons; sources and Unsplash CDN verified."
+  },
+  {
+    "filename": "bali.webp",
+    "path": "/workspace/scratch/routes-untold-assets/bali.webp",
+    "source": "https://www.travelfika.com/tourism/indonesia/is-bali-safe",
+    "photographer": null,
+    "alt": "Pura Ulun Danu Bratan reflected in a lake, Bali",
+    "direct_url": "https://images.unsplash.com/photo-1604999333679-b86d54738315?auto=format&fit=crop&w=1200&q=85",
+    "dimensions": [
+      1200,
+      960
+    ],
+    "bytes": 157930,
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "note": "Commercial use allowed; attribution appreciated. Specific original page not resolved for Bali, Himachal, balloons; sources and Unsplash CDN verified."
+  },
+  {
+    "filename": "vietnam.webp",
+    "path": "/workspace/scratch/routes-untold-assets/vietnam.webp",
+    "source": "https://unsplash.com/photos/pagoda-surrounded-by-body-of-water-and-mountains-PgSxHidgJHQ",
+    "photographer": "Rowan Heuvel",
+    "alt": "Pagoda and limestone karsts in Trang An, Ninh Binh, Vietnam",
+    "direct_url": "https://images.unsplash.com/photo-1557750255-c76072a7aad1?auto=format&fit=crop&w=1200&q=85",
+    "dimensions": [
+      1200,
+      800
+    ],
+    "bytes": 181626,
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "note": "Commercial use allowed; attribution appreciated. Specific original page not resolved for Bali, Himachal, balloons; sources and Unsplash CDN verified."
+  },
+  {
+    "filename": "kashmir.webp",
+    "path": "/workspace/scratch/routes-untold-assets/kashmir.webp",
+    "source": "https://unsplash.com/photos/lake-in-the-middle-of-mountains-gUsAcu6Ba_A",
+    "photographer": "Vivek",
+    "alt": "Gadsar Lake, Kashmir, surrounded by mountains",
+    "direct_url": "https://images.unsplash.com/photo-1631420105765-caf5ccd069bc?auto=format&fit=crop&w=1200&q=85",
+    "dimensions": [
+      1200,
+      800
+    ],
+    "bytes": 228878,
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "note": "Commercial use allowed; attribution appreciated. Specific original page not resolved for Bali, Himachal, balloons; sources and Unsplash CDN verified."
+  },
+  {
+    "filename": "himachal.webp",
+    "path": "/workspace/scratch/routes-untold-assets/himachal.webp",
+    "source": "https://unsplash.com/s/photos/himachal-pradesh",
+    "photographer": null,
+    "alt": "Hillside houses and misty mountains in Himachal Pradesh",
+    "direct_url": "https://images.unsplash.com/photo-1657894736632-e18fbccf8e7d?auto=format&fit=crop&w=1200&q=85",
+    "dimensions": [
+      1200,
+      1800
+    ],
+    "bytes": 181718,
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "note": "Commercial use allowed; attribution appreciated. Specific original page not resolved for Bali, Himachal, balloons; sources and Unsplash CDN verified."
+  },
+  {
+    "filename": "dubai.webp",
+    "path": "/workspace/scratch/routes-untold-assets/dubai.webp",
+    "source": "https://unsplash.com/photos/wide-angle-photography-of-high-rise-buildings-and-burj-khalifa-during-daytime-cqBOkLC6Q58",
+    "photographer": "Alex Azabache",
+    "alt": "Dubai skyline with Burj Khalifa",
+    "direct_url": "https://images.unsplash.com/photo-1569668443977-367a489241ef?auto=format&fit=crop&w=1200&q=85",
+    "dimensions": [
+      1200,
+      1800
+    ],
+    "bytes": 260632,
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "note": "Commercial use allowed; attribution appreciated. Specific original page not resolved for Bali, Himachal, balloons; sources and Unsplash CDN verified."
+  },
+  {
+    "filename": "gallery-hike.webp",
+    "path": "/workspace/scratch/routes-untold-assets/gallery-hike.webp",
+    "source": "https://unsplash.com/fr/photos/couple-assis-sur-le-rocher-face-a-la-vue-sur-la-montagne-XFPCqcHHTZA",
+    "photographer": "Sara Dubler",
+    "alt": "Hiker looking across misty Alpine peaks in Veytaux, Switzerland",
+    "direct_url": "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?auto=format&fit=crop&w=1200&q=85",
+    "dimensions": [
+      1200,
+      800
+    ],
+    "bytes": 125802,
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "note": "Commercial use allowed; attribution appreciated. Specific original page not resolved for Bali, Himachal, balloons; sources and Unsplash CDN verified."
+  },
+  {
+    "filename": "gallery-campfire.webp",
+    "path": "/workspace/scratch/routes-untold-assets/gallery-campfire.webp",
+    "source": "https://unsplash.com/photos/a-group-of-people-sitting-around-a-campfire-sX5GqBZ4vFU",
+    "photographer": "Ivan Dimitrov",
+    "alt": "Friends gathered at a forest campfire in Bulgaria",
+    "direct_url": "https://images.unsplash.com/photo-1646912951442-7a2bc5e8cd06?auto=format&fit=crop&w=1200&q=85",
+    "dimensions": [
+      1200,
+      960
+    ],
+    "bytes": 217488,
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "note": "Commercial use allowed; attribution appreciated. Specific original page not resolved for Bali, Himachal, balloons; sources and Unsplash CDN verified."
+  },
+  {
+    "filename": "gallery-balloons.webp",
+    "path": "/workspace/scratch/routes-untold-assets/gallery-balloons.webp",
+    "source": "https://unsplash.com/s/photos/gold-balloons",
+    "photographer": null,
+    "alt": "Hot air balloons lifting off at golden sunrise",
+    "direct_url": "https://images.unsplash.com/photo-1571487826484-5405582679be?auto=format&fit=crop&w=1200&q=85",
+    "dimensions": [
+      1200,
+      800
+    ],
+    "bytes": 52252,
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "note": "Commercial use allowed; attribution appreciated. Specific original page not resolved for Bali, Himachal, balloons; sources and Unsplash CDN verified."
+  }
+]
