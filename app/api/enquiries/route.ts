@@ -1,6 +1,11 @@
-import { env } from 'cloudflare:workers';
-import { handleEnquiry, type EnquiryEnvironment } from '@/lib/enquiries';
+import { handleEnquiry } from '@/lib/enquiries';
 
-export async function POST(request:Request) {
- return handleEnquiry(request,env as EnquiryEnvironment);
+export const runtime = 'nodejs';
+export const maxDuration = 30;
+
+export async function POST(request: Request) {
+  return handleEnquiry(request, {
+    SUPABASE_URL: process.env.SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY: process.env.SUPABASE_PUBLISHABLE_KEY,
+  });
 }
