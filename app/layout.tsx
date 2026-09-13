@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import './globals.css';
 export const metadata: Metadata = {
  title: 'Routes Untold | Personalised Holidays & Travel Experiences',
@@ -7,4 +8,25 @@ export const metadata: Metadata = {
  robots:{index:true,follow:true},
  icons:{icon:'/favicon.svg',shortcut:'/favicon.svg'}
 };
-export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="en"><body>{children}</body></html>}
+export default function RootLayout({children}:{children:React.ReactNode}) {
+ return (
+  <html lang="en">
+   <body>
+    {children}
+    <Script id="google-analytics-init" strategy="afterInteractive">
+     {`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-S61BQ8BJC4');
+     `}
+    </Script>
+    <Script
+     id="google-analytics-loader"
+     src="https://www.googletagmanager.com/gtag/js?id=G-S61BQ8BJC4"
+     strategy="afterInteractive"
+    />
+   </body>
+  </html>
+ );
+}
