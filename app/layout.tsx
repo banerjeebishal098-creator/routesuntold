@@ -18,12 +18,12 @@ export default function RootLayout({children}:{children:React.ReactNode}) {
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-S61BQ8BJC4');
+      gtag('config', 'G-MMJEPBCT83');
      `}
     </Script>
     <Script
      id="google-analytics-loader"
-     src="https://www.googletagmanager.com/gtag/js?id=G-S61BQ8BJC4"
+     src="https://www.googletagmanager.com/gtag/js?id=G-MMJEPBCT83"
      strategy="afterInteractive"
     />
    </body>
