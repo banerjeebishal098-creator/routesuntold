@@ -1,17 +1,24 @@
 import { z } from 'zod';
+import { services } from './services';
 
 export const enquirySchema = z.object({
  requestId: z.string().uuid(),
  name: z.string().trim().min(1).max(100),
  phone: z.string().trim().regex(/^[+0-9 ()-]{10,22}$/).refine(v => { const n=v.replace(/\D/g,'').length; return n>=10&&n<=15; }),
  email: z.union([z.literal(''),z.string().trim().email().max(254)]).optional(),
- destination: z.enum(['Thailand','Bali','Kashmir','Himachal Pradesh','Vietnam','Dubai','Not sure yet']),
+ destination: z.enum(['Thailand','Bali','Kashmir','Himachal Pradesh','Vietnam','Dubai','Another country','Not sure yet']),
+ destinationDetails: z.string().trim().max(100).optional(),
+ service: z.enum(['itinerary','hotels-cabs','hotels-flights']).optional(),
  month: z.union([z.literal(''),z.string().regex(/^20\d{2}-(0[1-9]|1[0-2])$/)]).optional(),
  travellers: z.coerce.number().int().min(1).max(200),
  budget: z.enum(['Below ₹20,000','₹20,000–₹40,000','₹40,000–₹70,000','₹70,000–₹1,00,000','₹1,00,000+']),
  tripType: z.enum(['Couple','Family','Friends','Solo','Honeymoon','Corporate/Group']),
  message: z.string().trim().max(2000).optional(),
  whatsapp: z.boolean(),
+}).superRefine((value, ctx) => {
+ if (value.destination === 'Another country' && !value.destinationDetails) {
+  ctx.addIssue({code: z.ZodIssueCode.custom, path: ['destinationDetails'], message: 'Please enter your country or cities.'});
+ }
 });
 
 export type EnquiryEnvironment = { SUPABASE_URL?: string; SUPABASE_PUBLISHABLE_KEY?: string };
@@ -29,7 +36,17 @@ export async function handleEnquiry(request:Request, env:EnquiryEnvironment, sen
  if(!result.success) return response({error:'Please check your name, phone number, email and travel details.'},400);
  if(!env.SUPABASE_URL||!env.SUPABASE_PUBLISHABLE_KEY) return response({error:'Trip enquiries aren’t available yet. Please try again later.'},503);
  const e=result.data;
- const row={id:e.requestId,full_name:e.name,phone:e.phone,email:e.email||null,destination:e.destination,travel_month:e.month||null,travellers:e.travellers,budget_per_person:e.budget,trip_type:e.tripType,message:e.message||null,whatsapp_opt_in:e.whatsapp};
+ // Keep the existing database schema compatible with already deployed clients.
+ // Store the chosen service, its canonical fee and any unlisted destination in
+ // the enquiry message; no database migration or new public permissions needed.
+ const selectedService=services.find(item=>item.id===e.service);
+ const notes=[
+  selectedService ? `Requested service: ${selectedService.title} | Service fee: INR ${selectedService.fee} (travel costs separate)` : '',
+  e.destination === 'Another country' ? `Requested destination: ${e.destinationDetails}` : '',
+  e.message || '',
+ ].filter(Boolean).join('\n\n');
+ if(notes.length>2000) return response({error:'Please shorten your message so we can save your service and destination details.'},400);
+ const row={id:e.requestId,full_name:e.name,phone:e.phone,email:e.email||null,destination:e.destination==='Another country'?'Not sure yet':e.destination,travel_month:e.month||null,travellers:e.travellers,budget_per_person:e.budget,trip_type:e.tripType,message:notes||null,whatsapp_opt_in:e.whatsapp};
  try {
   const saved=await send(`${env.SUPABASE_URL.replace(/\/$/,'')}/rest/v1/routes_untold_enquiries`,{
    method:'POST',headers:{apikey:env.SUPABASE_PUBLISHABLE_KEY,'Content-Type':'application/json',Prefer:'return=minimal'},

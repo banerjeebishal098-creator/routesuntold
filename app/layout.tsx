@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import './globals.css';
 export const metadata: Metadata = {
- title: 'Routes Untold | Personalised Holidays & Travel Experiences',
- description: 'Discover personalised holidays, hidden destinations and unforgettable travel experiences with Routes Untold. Tell us where you want to go and we’ll design the journey.',
- openGraph: {title:'Routes Untold | Go Beyond the Usual',description:'Your dates. Your budget. Your kind of journey. Discover personalised holidays with Routes Untold.',type:'website',locale:'en_IN',siteName:'Routes Untold'},
+ title: 'Routes Untold | Travel Planning & Booking Services',
+ description: 'Personalised itineraries for ₹349, hotel and cab booking help for ₹1,999, and hotel and flight booking help for ₹1,499. Travel costs are separate.',
+ openGraph: {title:'Routes Untold | Go Beyond the Usual',description:'Your trip, our planning and booking help. Itineraries ₹349, hotels and cabs ₹1,999, hotels and flights ₹1,499. Service fees only.',type:'website',locale:'en_IN',siteName:'Routes Untold'},
  robots:{index:true,follow:true},
  icons:{icon:'/favicon.svg',shortcut:'/favicon.svg'}
 };

@@ -1,6 +1,6 @@
 # Routes Untold
 
-A travel website built with Next.js, React and Tailwind CSS, ready to deploy on Vercel. Includes the responsive brand logo, destination gallery and a Supabase-backed trip enquiry form.
+A travel website built with Next.js, React and Tailwind CSS, ready to deploy on Vercel. Includes the responsive brand logo, destination gallery and a Supabase-backed service enquiry form.
 
 ## Deploy to Vercel
 
@@ -19,6 +19,16 @@ A travel website built with Next.js, React and Tailwind CSS, ready to deploy on 
 If you already imported this repository into Vercel, use the root directory above, add the two variables, and redeploy the latest `main` commit. Environment changes require a new deployment. No Supabase service-role key is required.
 
 The form uses a server route at `/api/enquiries`; keep the Next.js framework and `.next` build output. Do not set `output: 'export'`, change the output to `out`, or enable GitHub Pages. Vercel runs the API as a Node.js function. The old Cloudflare build and GitHub Pages workflow have been removed.
+
+## Services
+
+- Personalised itinerary planning: **₹349**.
+- Hotel and cab booking help: **₹1,999**.
+- Hotel and flight booking help: **₹1,499**.
+
+These are service fees; actual travel expenses are separate. The shared catalogue is `lib/services.ts`. The website describes 20–50% savings as a target against comparable package quotes, with actual savings dependent on dates, availability and travel choices.
+
+The form saves the selected service and fee in the existing enquiry table's `message` field, followed by the customer's notes. For “Another country”, the actual country/cities are saved in that message and the existing `destination` column uses `Not sure yet` to remain compatible with its database constraint. **No Supabase migration is needed.** Older submissions without a service selection remain supported.
 
 ## Supabase
 
